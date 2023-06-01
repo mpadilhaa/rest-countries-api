@@ -3,3 +3,43 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --dark-mode-elements: hsl(209, 23%, 22%);
+  --dark-mode-bg: hsl(207, 26%, 17%);
+  --light-mode-text: hsl(200, 15%, 8%);
+  --light-mode-input: hsl(0, 0%, 52%);
+  --light-mode-bg: hsl(0, 0%, 98%);
+  --dark-mode-text: hsl(0, 0%, 100%);
+  --padding-mobile: 0 30px;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+h2 {
+  font-size: clamp(1rem, 0.9393rem + 0.2589vw, 1.25rem);
+}
+
+h3 {
+  font-size: clamp(0.75rem, 0.6893rem + 0.2589vw, 1rem);
+}
+
+h4 {
+  font-size: clamp(0.6875rem, 0.6268rem + 0.2589vw, 0.9375rem);
+}
+
+span,
+button {
+  font-weight: 300;
+}
+
+.dark {
+  background-color: var(--dark-mode-bg);
+  color: var(--dark-mode-text);
+}
+
+.light {
+  background-color: var(--light-mode-bg);
+  color: var(--light-mode-text);
+}

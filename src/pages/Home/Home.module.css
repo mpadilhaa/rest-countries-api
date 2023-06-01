@@ -1,0 +1,74 @@
+.dark {
+  background-color: var(--dark-mode-bg);
+  color: var(--dark-mode-text);
+}
+
+.light {
+  background-color: var(--light-mode-bg);
+  color: var(--light-mode-text);
+}
+
+.darkInput input {
+  background-color: var(--dark-mode-elements);
+  color: var(--dark-mode-text);
+}
+.darkInput input::placeholder {
+  color: var(--dark-mode-text);
+}
+
+.lightInput input {
+  background-color: var(--light-mode-bg);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  gap: 30px;
+}
+
+.inputSearch {
+  min-width: 320px;
+  max-width: 350px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.inputSearch input {
+  width: 100%;
+
+  padding: 10px 60px;
+  border: none;
+}
+
+.inputSearch input:focus {
+  outline: none;
+}
+
+.inputSearch button {
+  position: absolute;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  top: 7px;
+  left: 20px;
+}
+.content {
+  min-height: 100vh;
+}
+
+.listCountry {
+  gap: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+@media (min-width: 820px) {
+  .inputSearch {
+  }
+  .content {
+    padding: 0 40px;
+  }
+}

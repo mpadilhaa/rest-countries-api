@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import styles from "./Home.module.css";
 import data from "../../data/data.json";
 import { useNavigate } from "react-router-dom";
-
+import CardCountries from "../../components/CardCountries/CardCountries";
+import { ThemeContext } from "../../ThemeContext";
+import { useContext } from "react";
 const Home = () => {
   const [country, setCountry] = useState();
   const [filteredData, setFilteredData] = useState([]);
   const navigate = useNavigate();
-
+  const { isDarkMode } = useContext(ThemeContext);
   const results = data.filter((item) =>
     item.name.toLowerCase().includes(country)
   );
@@ -22,14 +24,17 @@ const Home = () => {
   function handleDetails(value) {
     navigate(`/country/${value}`);
   }
-  console.log(filteredData);
-  console.log(results);
 
-  console.log(country);
   return (
-    <div className={styles.content}>
-      <div>
-        <div className={styles.inputSearch}>
+    <div
+      className={`${styles.content} ${isDarkMode ? styles.dark : styles.light}`}
+    >
+      <div className={styles.header}>
+        <div
+          className={` ${styles.inputSearch} ${
+            isDarkMode ? styles.darkInput : styles.lightInput
+          }`}
+        >
           <button>icon</button>
           <input
             type="text"
@@ -37,7 +42,11 @@ const Home = () => {
             onChange={(e) => setCountry(e.target.value)}
           />
         </div>
-        <div className={styles.filterRegion}>
+        <div
+          className={` ${styles.filterRegion} ${
+            isDarkMode ? styles.darkInput : styles.lightInput
+          }`}
+        >
           <button>Filter by region</button>
           <button
             onClick={() => {
@@ -76,80 +85,53 @@ const Home = () => {
           </button>
         </div>
       </div>
-      {filteredData && (
+      <div>
         <div>
-          {filteredData.map((card) => (
-            <div
-              onClick={() => {
-                handleDetails(card.numericCode);
-              }}
-            >
-              <div>
-                <img src={card.flags.svg} alt=" country " />
-              </div>
-              <div>
-                <h3>{card.name}</h3>
-                <h4>
-                  Population:<p>{card.population}</p>
-                </h4>
-                <h4>
-                  Region:<p>{card.region}</p>
-                </h4>
-                <h4>
-                  Capital:<p>{card.capital}</p>
-                </h4>
-              </div>
+          {filteredData && (
+            <div className={styles.listCountry}>
+              {filteredData.map((card) => (
+                <div
+                  onClick={() => {
+                    handleDetails(card.numericCode);
+                  }}
+                >
+                  <CardCountries country={card} />
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      )}
-
-      {country && (
         <div>
-          {results.map((card) => (
-            <div>
-              <div>
-                <img src={card.flags.svg} alt=" country " />
-              </div>
-              <div>
-                <h3>{card.name}</h3>
-                <h4>
-                  Population:<p>{card.population}</p>
-                </h4>
-                <h4>
-                  Region:<p>{card.region}</p>
-                </h4>
-                <h4>
-                  Capital:<p>{card.capital}</p>
-                </h4>
-              </div>
+          {country && (
+            <div className={styles.listCountry}>
+              {results.map((card) => (
+                <div
+                  onClick={() => {
+                    handleDetails(card.numericCode);
+                  }}
+                >
+                  <CardCountries country={card} />
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      )}
-      {!country && (
         <div>
-          {data.map((card) => (
-            <div>
-              <div>
-                <img src={card.flags.svg} alt=" country " />
-              </div>
-              <div>
-                <h3>{card.name}</h3>
-                <h4>
-                  Population:<p>{card.population}</p>
-                </h4>
-                <h4>
-                  Region:<p>{card.region}</p>
-                </h4>
-                <h4>
-                  Capital:<p>{card.capital}</p>
-                </h4>
-              </div>
+          {!country && (
+            <div className={styles.listCountry}>
+              {data.map((card) => (
+                <div
+                  onClick={() => {
+                    handleDetails(card.numericCode);
+                  }}
+                >
+                  <CardCountries country={card} />
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

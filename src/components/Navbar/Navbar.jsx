@@ -1,12 +1,17 @@
 import React from "react";
 import styles from "./Navbar.module.css";
+import { ThemeContext } from "../../ThemeContext";
+import { useContext } from "react";
 
-const Navbar = () => {
+const Navbar = ({ handleBg }) => {
+  const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
   return (
-    <nav className={styles.navbar}>
+    <nav
+      className={`${styles.navbar} ${isDarkMode ? styles.dark : styles.light}`}
+    >
       <h2>Where in the world?</h2>
       <div>
-        <p>Dark Mode</p>
+        <span onClick={toggleDarkMode}>Dark Mode</span>
       </div>
     </nav>
   );

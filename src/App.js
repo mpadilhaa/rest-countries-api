@@ -1,12 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Countries from "./pages/Countries/Country";
-import "./App.module.css";
+import styles from "./App.module.css";
 import Navbar from "./components/Navbar/Navbar";
+import { ThemeContext } from "./ThemeContext";
+import { useContext } from "react";
 
 function App() {
+  const { isDarkMode } = useContext(ThemeContext);
+  console.log(isDarkMode);
+
   return (
-    <div className="App">
+    <div
+      className={`${styles.main} ${isDarkMode ? styles.dark : styles.light}`}
+    >
       <Navbar />
       <Routes>
         <Route>
