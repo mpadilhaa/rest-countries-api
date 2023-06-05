@@ -8,7 +8,6 @@ import { useContext } from "react";
 
 function App() {
   const { isDarkMode } = useContext(ThemeContext);
-  console.log(isDarkMode);
 
   return (
     <div

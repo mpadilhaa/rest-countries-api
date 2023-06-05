@@ -137,6 +137,7 @@ const Home = () => {
             <div className={styles.listCountry}>
               {filteredData.map((card) => (
                 <div
+                  key={card.numericCode}
                   onClick={() => {
                     handleDetails(card.numericCode);
                   }}
@@ -152,6 +153,7 @@ const Home = () => {
             <div className={styles.listCountry}>
               {results.map((card) => (
                 <div
+                  key={card.numericCode}
                   onClick={() => {
                     handleDetails(card.numericCode);
                   }}
@@ -167,6 +169,7 @@ const Home = () => {
             <div className={styles.listCountry}>
               {data.map((card) => (
                 <div
+                  key={card.numericCode}
                   onClick={() => {
                     handleDetails(card.numericCode);
                   }}
