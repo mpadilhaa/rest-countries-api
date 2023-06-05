@@ -73,8 +73,11 @@ const CardCountries = ({ country, overview = false }) => {
                   <h4>
                     Languages:
                     <p className={styles.languageStyles}>
-                      {country.languages.map((language) => (
-                        <div key={language.numericCode}>{language.name}</div>
+                      {country.languages.map((language, index) => (
+                        <div key={language.numericCode}>
+                          {language.name}
+                          {index !== country.languages.length - 1 && ", "}
+                        </div>
                       ))}
                     </p>
                   </h4>
