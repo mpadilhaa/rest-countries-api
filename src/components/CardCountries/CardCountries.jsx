@@ -66,7 +66,7 @@ const CardCountries = ({ country, overview = false }) => {
                 <div>
                   <h4>
                     Currencies:
-                    <p>{country.currencies.name}</p>
+                    <p>{country.currencies[0].name}</p>
                   </h4>
                 </div>
                 <div>
