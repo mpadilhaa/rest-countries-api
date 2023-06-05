@@ -8,8 +8,8 @@
   --dark-mode-bg: hsl(207, 26%, 17%);
   --light-mode-text: hsl(200, 15%, 8%);
   --light-mode-input: hsl(0, 0%, 52%);
-  --light-mode-bg: hsl(0, 0%, 98%);
-  --dark-mode-text: hsl(0, 0%, 100%);
+  --light-mode-bg: hsl(0, 0%, 97%);
+  --dark-mode-text: hsl(0, 0%, 91%);
   --padding-mobile: 0 30px;
 }
 
@@ -29,9 +29,15 @@ h4 {
   font-size: clamp(0.6875rem, 0.6268rem + 0.2589vw, 0.9375rem);
 }
 
+p {
+  font-weight: 400;
+}
 span,
 button {
-  font-weight: 300;
+  font-weight: 700;
+  font-size: clamp(0.75rem, 0.7197rem + 0.1294vw, 0.875rem);
+  display: flex;
+  align-items: center;
 }
 
 .dark {

@@ -7,81 +7,99 @@ const CardCountries = ({ country, overview = false }) => {
   const { isDarkMode } = useContext(ThemeContext);
 
   return (
-    <>
+    <div className={overview ? styles.Countries : ""}>
       <div
-        className={`${styles.card} ${isDarkMode ? styles.dark : styles.light}`}
+        className={`${!overview ? styles.card : styles.cardCountry} ${
+          isDarkMode ? styles.dark : styles.light
+        }`}
       >
-        <div className={styles.image}>
+        <div className={!overview ? styles.image : styles.imageCountry}>
           <img src={country.flags.svg} alt=" country " />
         </div>
-        <div className={styles.content}>
+        <div className={!overview ? styles.content : styles.contentCountry}>
           <h2>{country.name}</h2>
-          <div>
-            <h4>
-              Population:
-              <span>{country.population}</span>
-            </h4>
-          </div>
-          <div>
-            <h4>
-              Region:
-              <span>{country.region}</span>
-            </h4>
+          <div className={styles.contentCountryColumns}>
+            <div className={styles.primaryColumn}>
+              {overview && (
+                <div>
+                  <h4>
+                    Native Name: <p>{country.nativeName}</p>
+                  </h4>
+                </div>
+              )}
+              <div>
+                <h4>
+                  Population:
+                  <p>{country.population.toLocaleString("pt-BR")}</p>
+                </h4>
+              </div>
+              <div>
+                <h4>
+                  Region:
+                  <p>{country.region}</p>
+                </h4>
+              </div>
+
+              {overview && (
+                <div>
+                  <h4>
+                    Sub Region: <p>{country.subregion}</p>
+                  </h4>
+                </div>
+              )}
+
+              <div>
+                <h4>
+                  Capital:
+                  <p>{country.capital}</p>
+                </h4>
+              </div>
+            </div>
+            {overview && (
+              <div className={styles.secondColumn}>
+                <div>
+                  <h4>
+                    Top Level Domain:
+                    <p>{country.topLevelDomain}</p>
+                  </h4>
+                </div>
+                <div>
+                  <h4>
+                    Currencies:
+                    <p>{country.currencies.name}</p>
+                  </h4>
+                </div>
+                <div>
+                  <h4>
+                    Languages:
+                    <p className={styles.languageStyles}>
+                      {country.languages.map((language) => (
+                        <div key={language.numericCode}>{language.name}</div>
+                      ))}
+                    </p>
+                  </h4>
+                </div>
+              </div>
+            )}
           </div>
 
           {overview && (
-            <div>
-              <h4>
-                Sub Region: <span>{country.subregion}</span>
-              </h4>
-            </div>
-          )}
-
-          <div>
-            <h4>
-              Capital:
-              <span>{country.capital}</span>
-            </h4>
-          </div>
-        </div>
-        {overview && (
-          <div>
-            <div>
-              <div>
-                <h4>
-                  Top Level Domain:
-                  <span>{country.topLevelDomain}</span>
-                </h4>
-              </div>
-              <div>
-                <h4>
-                  Currencies:
-                  <span>{country.currencies.name}</span>
-                </h4>
-              </div>
-              <div>
-                <h4>
-                  Languages:
-                  <span>
-                    {country.languages.map((language) => (
-                      <div key={language.numericCode}>{language.name}</div>
-                    ))}
-                  </span>
-                </h4>
-              </div>
-            </div>
-            <div>
+            <div className={styles.thirdColumn}>
               <h3>Border Countries:</h3>
-              <div>
+              <div className={styles.borderCountries}>
                 {" "}
                 {country.borders &&
-                  country.borders.map((item) => <span>{item}</span>)}
+                  country.borders.map((item) => (
+                    <p className={isDarkMode ? styles.dark : styles.light}>
+                      {item.toLowerCase()}
+                    </p>
+                  ))}
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

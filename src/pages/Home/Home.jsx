@@ -5,11 +5,16 @@ import { useNavigate } from "react-router-dom";
 import CardCountries from "../../components/CardCountries/CardCountries";
 import { ThemeContext } from "../../ThemeContext";
 import { useContext } from "react";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { IoIosArrowDown } from "react-icons/io";
+
 const Home = () => {
-  const [country, setCountry] = useState();
+  const [country, setCountry] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [displayFilter, setDisplayFilter] = useState(false);
   const navigate = useNavigate();
   const { isDarkMode } = useContext(ThemeContext);
+
   const results = data.filter((item) =>
     item.name.toLowerCase().includes(country)
   );
@@ -18,7 +23,18 @@ const Home = () => {
     const values = data.filter((item) =>
       item.region.toLowerCase().includes(value)
     );
+
     setFilteredData(values);
+    setDisplayFilter(false);
+  }
+
+  function inputSearch(e) {
+    setFilteredData([]);
+    setCountry(e.target.value);
+  }
+
+  function showDisplayFilter() {
+    setDisplayFilter(!displayFilter);
   }
 
   function handleDetails(value) {
@@ -35,11 +51,13 @@ const Home = () => {
             isDarkMode ? styles.darkInput : styles.lightInput
           }`}
         >
-          <button>icon</button>
+          <span>
+            <BiSearchAlt2 />
+          </span>
           <input
             type="text"
             placeholder="Search for a country...."
-            onChange={(e) => setCountry(e.target.value)}
+            onChange={inputSearch}
           />
         </div>
         <div
@@ -47,42 +65,70 @@ const Home = () => {
             isDarkMode ? styles.darkInput : styles.lightInput
           }`}
         >
-          <button>Filter by region</button>
-          <button
-            onClick={() => {
-              filterCountries("africa");
-            }}
+          <span
+            onClick={showDisplayFilter}
+            className={` ${styles.showFilter} ${
+              isDarkMode ? styles.darkFilter : styles.lightFilter
+            }`}
           >
-            Africa
-          </button>
-          <button
-            onClick={() => {
-              filterCountries("america");
-            }}
+            Filter by region
+            <IoIosArrowDown size={20} />
+          </span>
+
+          <div
+            className={` ${styles.listFilterContainer} ${
+              isDarkMode ? styles.darkFilter : styles.lightFilter
+            }`}
           >
-            América
-          </button>
-          <button
-            onClick={() => {
-              filterCountries("asia");
-            }}
-          >
-            Asia
-          </button>
-          <button
-            onClick={() => {
-              filterCountries("europe");
-            }}
-          >
-            Europa
-          </button>
-          <button
-            onClick={() => {
-              filterCountries("oceania");
-            }}
-          >
-            Oceania
-          </button>
+            {displayFilter && (
+              <div
+                className={` ${styles.listFilter} ${
+                  isDarkMode ? styles.darkInput : styles.lightInput
+                }`}
+              >
+                <span
+                  onClick={() => {
+                    filterCountries("africa");
+                  }}
+                  className={isDarkMode ? styles.darkInput : styles.lightInput}
+                >
+                  Africa
+                </span>
+                <span
+                  onClick={() => {
+                    filterCountries("america");
+                  }}
+                  className={isDarkMode ? styles.darkInput : styles.lightInput}
+                >
+                  América
+                </span>
+                <span
+                  onClick={() => {
+                    filterCountries("asia");
+                  }}
+                  className={isDarkMode ? styles.darkInput : styles.lightInput}
+                >
+                  Asia
+                </span>
+                <span
+                  onClick={() => {
+                    filterCountries("europe");
+                  }}
+                  className={isDarkMode ? styles.darkInput : styles.lightInput}
+                >
+                  Europa
+                </span>
+                <span
+                  onClick={() => {
+                    filterCountries("oceania");
+                  }}
+                  className={isDarkMode ? styles.darkInput : styles.lightInput}
+                >
+                  Oceania
+                </span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div>

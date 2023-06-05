@@ -4,7 +4,7 @@
 }
 
 .light {
-  background-color: var(--light-mode-bg);
+  background-color: var(--dark-mode-text);
   color: var(--light-mode-text);
 }
 
@@ -20,39 +20,90 @@
   background-color: var(--light-mode-bg);
 }
 
+.darkFilter {
+  background-color: var(--dark-mode-elements);
+  color: var(--dark-mode-text);
+}
+
+.lightFilter {
+  background-color: var(--light-mode-bg);
+}
+
 .header {
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  padding: 20px 30px;
   gap: 30px;
 }
 
 .inputSearch {
-  min-width: 320px;
-  max-width: 350px;
+  width: 90%;
+  max-width: 600px;
   position: relative;
-  margin: 0 auto;
 }
 
 .inputSearch input {
   width: 100%;
-
   padding: 10px 60px;
   border: none;
+  height: 42px;
+  border-radius: 5px;
 }
 
 .inputSearch input:focus {
   outline: none;
 }
 
-.inputSearch button {
+.inputSearch span {
   position: absolute;
   z-index: 2;
+
   width: 20px;
   height: 20px;
-  top: 7px;
+  font-size: 20px;
+  top: 12px;
   left: 20px;
 }
+.filterRegion {
+  position: relative;
+}
+
+.showFilter {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  min-width: 170px;
+  max-width: 200px;
+  height: 42px;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.listFilterContainer {
+  position: absolute;
+  top: 45px;
+  display: flex;
+  width: 200px;
+  max-width: 250px;
+
+  border-radius: 5px;
+}
+.listFilter {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 20px;
+}
+.listFilter span {
+  width: 100px;
+  padding: 3px 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
 .content {
   min-height: 100vh;
 }
@@ -62,11 +113,14 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 @media (min-width: 820px) {
-  .inputSearch {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0;
   }
   .content {
     padding: 0 40px;

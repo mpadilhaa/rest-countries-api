@@ -5,6 +5,24 @@
   padding: 20px 30px;
 }
 
+.navbar span {
+  cursor: pointer;
+}
 .dark {
   background-color: var(--dark-mode-elements);
+}
+
+.darkMoon {
+  margin-right: 3px;
+  fill: var(--light-mode-bg);
+}
+
+.ligthMoon {
+  margin-right: 3px;
+}
+
+@media (min-width: 820px) {
+  .navbar {
+    padding: 20px 40px;
+  }
 }
